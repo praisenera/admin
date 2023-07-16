@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/praisenera/admin/static/css/main.ee564d96.css",
+    "main.js": "/praisenera/admin/static/js/main.cd9b06d0.js",
+    "static/js/787.3ce4cc4d.chunk.js": "/praisenera/admin/static/js/787.3ce4cc4d.chunk.js",
+    "static/media/hero.jpg": "/praisenera/admin/static/media/hero.0582528b2af1c2a54608.jpg",
+    "index.html": "/praisenera/admin/index.html",
+    "main.ee564d96.css.map": "/praisenera/admin/static/css/main.ee564d96.css.map",
+    "main.cd9b06d0.js.map": "/praisenera/admin/static/js/main.cd9b06d0.js.map",
+    "787.3ce4cc4d.chunk.js.map": "/praisenera/admin/static/js/787.3ce4cc4d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ee564d96.css",
+    "static/js/main.cd9b06d0.js"
+  ]
+}
