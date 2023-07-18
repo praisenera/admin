@@ -5,6 +5,7 @@ import { auth } from "../config/firebaseconfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Button, Spinner } from "react-bootstrap";
 import Sidebar from "./Sidebar";
+import AdminDashboard from "./AdminDashboard";
 
 function Login() {
   const [email, setEmail] = useState(null);
@@ -43,42 +44,14 @@ function Login() {
     <>
       {auth.currentUser ? (
         <>
-          <Sidebar></Sidebar>
-          <div className="content">
-            <table class="table mt-5">
-              <tr>
-                <th>Student ID</th>
-                <th>Name</th>
-                <th>Gender</th>
-                <th>Age </th>
-                <th>Bithdate </th>
-                <th>Year Level </th>
-                <th>Course</th>
-                <th>Email</th>
-                <th>Address</th>
-              </tr>
-              <tbody>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <AdminDashboard />
         </>
       ) : (
         <>
           <div className="pt-5 pb-5">
             <div className="form mt-5 mb-5">
               <div className="form-body">
-                <h1>Please Login</h1>
+                <h1>LOGIN ADMIN ACCOUNT</h1>
                 <div className="email">
                   <label className="form__label" for="email">
                     Email
