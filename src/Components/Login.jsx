@@ -44,7 +44,7 @@ function Login() {
             <h4 style={{ padding: "16px" }}>Admin Dashboard</h4>
             <Nav.Link>
               <Link
-                to="/addmin-dashboard"
+                to="/admin-dashboard"
                 className="link"
                 style={{ paddingLeft: "20px" }}
               >
