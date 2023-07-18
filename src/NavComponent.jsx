@@ -59,26 +59,33 @@ function OffcanvasExample() {
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                   {auth.currentUser ? (
-                    <Nav.Link>
-                      <Link
-                        to="/logout"
-                        className="link"
-                        onClick={logout}
-                        style={{ paddingLeft: "20px" }}
-                      >
-                        Logout
-                      </Link>
-                    </Nav.Link>
+                    <>
+                      <Nav.Link>
+                        <Link
+                          to="/admin-dashboard"
+                          className="link"
+                          style={{ paddingLeft: "20px" }}
+                        >
+                          dashboard
+                        </Link>
+                      </Nav.Link>
+
+                      <Nav.Link>
+                        <Link
+                          to="/logout"
+                          className="link"
+                          onClick={logout}
+                          style={{ paddingLeft: "20px" }}
+                        >
+                          Logout
+                        </Link>
+                      </Nav.Link>
+                    </>
                   ) : (
                     <>
                       <Nav.Link>
                         <Link className="link" to="/">
                           Login
-                        </Link>
-                      </Nav.Link>
-                      <Nav.Link>
-                        <Link className="link" to="/register">
-                          Register
                         </Link>
                       </Nav.Link>
                     </>

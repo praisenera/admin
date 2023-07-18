@@ -9,10 +9,40 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./css/style.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { collection, getDocs } from "firebase/firestore";
+import { auth, db } from "./config/firebaseconfig";
+import { useEffect, useState } from "react";
 
 function App() {
+  const dbRefstd = collection(db, "students");
+  const [students, setStudents] = useState([]);
+  const getstudents = async () => {
+    try {
+      const data = await getDocs(dbRefstd);
+      const filteredData = data.docs
+        .map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }))
+        .filter((doc) => doc.userId != auth?.currentUser?.uid);
+      setStudents(filteredData);
+      console.log(filteredData);
+    } catch (err) {
+      if (auth.currentUser) {
+        alert("cannot connect to firebase servers");
+      }
+      setStudents([]);
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    getstudents();
+  }, []);
+
   return (
     <Router>
+      {console.log(students)}
       <OffcanvasExample />
       <Routes>
         <Route
@@ -27,7 +57,7 @@ function App() {
           path="/add-student"
           element={
             <>
-              <EnrollmentForm />
+              <EnrollmentForm students={students} getstudents={getstudents} />
             </>
           }
         />
@@ -36,7 +66,7 @@ function App() {
           path="/admin-dashboard"
           element={
             <>
-              <AdminDashboard />
+              <AdminDashboard students={students} />
             </>
           }
         />
@@ -49,12 +79,11 @@ function App() {
             </>
           }
         />
-
         <Route
-          path="/register"
+          path="/admin"
           element={
             <>
-              <Registration />
+              <Login />
             </>
           }
         />
