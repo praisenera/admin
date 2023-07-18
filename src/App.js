@@ -1,24 +1,65 @@
-import logo from './logo.svg';
-import './App.css';
+import Login from "./Components/Login";
+import Registration from "./Components/Registration";
+import AdminDashboard from "./Components/AdminDashboard";
+import OffcanvasExample from "./NavComponent";
+import EnrollmentForm from "./Components/Enrollment";
+import EditStudent from "./Components/EditStudents";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "./css/style.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <OffcanvasExample />
+      <Routes>
+        <Route
+          path="/edit-student"
+          element={
+            <>
+              <EditStudent />
+            </>
+          }
+        />
+        <Route
+          path="/add-student"
+          element={
+            <>
+              <EnrollmentForm />
+            </>
+          }
+        />
+
+        <Route
+          path="/admin-dashboard"
+          element={
+            <>
+              <AdminDashboard />
+            </>
+          }
+        />
+
+        <Route
+          path="/"
+          element={
+            <>
+              <Login />
+            </>
+          }
+        />
+
+        <Route
+          path="/register"
+          element={
+            <>
+              <Registration />
+            </>
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
 
