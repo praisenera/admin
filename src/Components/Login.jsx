@@ -4,6 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import { auth } from "../config/firebaseconfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Button, Spinner } from "react-bootstrap";
+import Sidebar from "./Sidebar";
 
 function Login() {
   const [email, setEmail] = useState(null);
@@ -42,55 +43,7 @@ function Login() {
     <>
       {auth.currentUser ? (
         <>
-          <div class="sidebar mt-0">
-            <h4 style={{ padding: "16px" }}>Admin Dashboard</h4>
-            <Nav.Link>
-              <Link
-                to="/addmin-dashboard"
-                className="link"
-                style={{ paddingLeft: "20px" }}
-              >
-                Student List
-              </Link>
-            </Nav.Link>
-            <br />
-            <Nav.Link>
-              <Link
-                to="/add-student"
-                className="link active"
-                style={{ paddingLeft: "20px" }}
-              >
-                Add Student
-              </Link>
-            </Nav.Link>
-            <br />
-            <Nav.Link>
-              <Link
-                to="/edit-student"
-                className="link"
-                style={{ paddingLeft: "20px" }}
-              >
-                Edit Student
-              </Link>
-            </Nav.Link>
-            <br />
-            <Nav.Link>
-              <Link to="#" className="link" style={{ paddingLeft: "20px" }}>
-                Delete Students
-              </Link>
-            </Nav.Link>
-            <br />
-            <Nav.Link>
-              <Link
-                to="/login"
-                className="link"
-                style={{ paddingLeft: "20px" }}
-              >
-                Logout
-              </Link>
-            </Nav.Link>
-          </div>
-
+          <Sidebar></Sidebar>
           <div className="content">
             <table class="table mt-5">
               <tr>

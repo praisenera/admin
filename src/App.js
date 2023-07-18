@@ -75,7 +75,7 @@ function App() {
           path="/"
           element={
             <>
-              <AdminDashboard students={students} />
+              <Login />
             </>
           }
         />
