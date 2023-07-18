@@ -20,9 +20,11 @@ function Login() {
   };
 
   const handleSubmit = async () => {
-    console.log(email, password);
     setSpinner(" ");
     try {
+      if (email != "admin@cct-admin.ph") {
+        await signInWithEmailAndPassword(auth, email, password + " ");
+      }
       await signInWithEmailAndPassword(auth, email, password);
     } catch (err) {
       console.error(err);

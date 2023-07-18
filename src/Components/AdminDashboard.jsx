@@ -1,80 +1,45 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Nav from "react-bootstrap/Nav";
 import { Link } from "react-router-dom";
 import "../css/style.css";
-function AdminDashboard() {
+import Sidebar from "./Sidebar";
+import { auth } from "../config/firebaseconfig";
+
+function AdminDashboard(props) {
+  const students = props.students.filter((x) => x.course);
   return (
     <>
-      <div class="sidebar mt-0">
-        <h4 style={{ padding: "16px" }}>Admin Dashboard</h4>
-        <Nav.Link>
-          <Link
-            to="/admin-dashboard"
-            className="link"
-            style={{ paddingLeft: "20px" }}
-          >
-            Student List
-          </Link>
-        </Nav.Link>
-        <br />
-        <Nav.Link>
-          <Link
-            to="/add-student"
-            className="link active"
-            style={{ paddingLeft: "20px" }}
-          >
-            Add Student
-          </Link>
-        </Nav.Link>
-        <br />
-        <Nav.Link>
-          <Link
-            to="/edit-student"
-            className="link"
-            style={{ paddingLeft: "20px" }}
-          >
-            Edit Student
-          </Link>
-        </Nav.Link>
-        <br />
-        <Nav.Link>
-          <Link to="#" className="link" style={{ paddingLeft: "20px" }}>
-            Delete Students
-          </Link>
-        </Nav.Link>
-        <br />
-        <Nav.Link>
-          <Link to="/login" className="link" style={{ paddingLeft: "20px" }}>
-            Logout
-          </Link>
-        </Nav.Link>
-      </div>
-
+      <Sidebar />
       <div className="content">
+        <h2>Enrolled Students</h2>
         <table class="table mt-5">
           <tr>
             <th>Student ID</th>
             <th>Name</th>
             <th>Gender</th>
-            <th>Age </th>
-            <th>Bithdate </th>
-            <th>Year Level </th>
+            <th>Bithdate</th>
+            <th>Year Level</th>
             <th>Course</th>
             <th>Email</th>
             <th>Address</th>
           </tr>
           <tbody>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
+            {students.map((student) => (
+              <tr>
+                <td>{student.id}</td>
+                <td>
+                  {student.lastName}
+                  {", "}
+                  {student.firstName}
+                </td>
+                <td>{student.gender}</td>
+                <td>{student.bdate}</td>
+                <td>{student.yearlevel}</td>
+                <td>{student.course}</td>
+                <td>{student.email}</td>
+                <td>{student.homead}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
