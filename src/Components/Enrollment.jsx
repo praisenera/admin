@@ -109,7 +109,6 @@ function EnrollmentForm(props) {
               type="date"
               id="birthdate"
               max={now}
-              type="date"
               value={bdate}
               onChange={(date) => setbdate(date.target.value)}
             />
@@ -178,16 +177,16 @@ function EnrollmentForm(props) {
               onChange={(e) => setCourse(e.target.value)}
             >
               <option value="">Select ..</option>
-              <option value="">BS in Business Administration </option>
-              <option value="">BS in Accountancy </option>
-              <option value="">BS in Management Accounting </option>
-              <option value="">
+              <option value="BSBA">BS in Business Administration </option>
+              <option value="BSA">BS in Accountancy </option>
+              <option value="BSMA">BS in Management Accounting </option>
+              <option value="BSHRDM">
                 BS in Human Resource Development Management
               </option>
               <option value="Tourism">BS in Tourism </option>
               <option value="BSIT">BS in Information Technology</option>
               <option value="BSCE">BS in Civil Engineering</option>
-              <option value="">BS in Computer Engineering</option>
+              <option value="BSCpE">BS in Computer Engineering</option>
               <option value="BSEE">BS in Electrical Engineering</option>
               <option value="BSME">BS in Mechanical Engineering</option>
               <option value="BSCRIM">BS in Criminology</option>
