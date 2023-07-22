@@ -2,11 +2,12 @@ import Login from "./Components/Login";
 import Registration from "./Components/Registration";
 import AdminDashboard from "./Components/AdminDashboard";
 import OffcanvasExample from "./NavComponent";
-import EnrollmentForm from "./Components/Enrollment";
+import EnrollmentForm from "./Components/Enrollment1";
 import EditStudent from "./Components/EditStudents";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import "./css/style.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
@@ -84,6 +85,15 @@ function App() {
           element={
             <>
               <Login />
+            </>
+          }
+        />
+
+        <Route
+          path="/enrollment1"
+          element={
+            <>
+              <EnrollmentForm />
             </>
           }
         />

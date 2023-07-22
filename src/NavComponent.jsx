@@ -33,7 +33,7 @@ function OffcanvasExample() {
         <Navbar
           key={expand}
           expand={expand}
-          className="mb-3"
+          className="mb-3 fixed-top"
           style={{ background: "white" }}
         >
           <Container fluid>

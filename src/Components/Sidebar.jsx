@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import Nav from "react-bootstrap/Nav";
 import { Link } from "react-router-dom";
 import "../css/style.css";
@@ -10,8 +10,11 @@ function Sidebar() {
         <Nav.Link>
           <Link
             to="/admin-dashboard"
-            className="link"
-            style={{ paddingLeft: "20px" }}
+            style={{
+              paddingLeft: "20px",
+              textDecoration: "none",
+              color: "black",
+            }}
           >
             Student List
           </Link>
@@ -20,8 +23,11 @@ function Sidebar() {
         <Nav.Link>
           <Link
             to="/add-student"
-            className="link active"
-            style={{ paddingLeft: "20px" }}
+            style={{
+              paddingLeft: "20px",
+              textDecoration: "none",
+              color: "black",
+            }}
           >
             Add Student
           </Link>
@@ -38,7 +44,14 @@ function Sidebar() {
         </Nav.Link> */}
         {/* <br /> */}
         <Nav.Link>
-          <Link to="#" className="link" style={{ paddingLeft: "20px" }}>
+          <Link
+            to="#"
+            style={{
+              paddingLeft: "20px",
+              textDecoration: "none",
+              color: "black",
+            }}
+          >
             Delete Students
           </Link>
         </Nav.Link>

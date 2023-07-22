@@ -13,6 +13,7 @@ function EnrollmentForm(props) {
   const [selected, setSelected] = useState("");
   const [selectedstudent, setSelectedstudent] = useState({});
   const [bdate, setbdate] = useState("");
+  const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
   const [yearlevel, setYearlevel] = useState("");
   const [homead, setHomeAd] = useState("");
@@ -38,6 +39,7 @@ function EnrollmentForm(props) {
     try {
       await updateDoc(xDoc, {
         bdate: bdate,
+        age: age,
         gender: gender,
         yearlevel: yearlevel,
         homead: homead,
@@ -111,6 +113,14 @@ function EnrollmentForm(props) {
               max={now}
               value={bdate}
               onChange={(date) => setbdate(date.target.value)}
+            />
+            <label>Age: </label>
+            <input
+              type="number"
+              id="age"
+              min="0"
+              max="100"
+              onChange={(e) => setAge(e.target.value)}
             />
             <label>Gender: </label>
             <input

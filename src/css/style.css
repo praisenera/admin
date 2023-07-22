@@ -7,6 +7,12 @@
 Button {
   align-items: center;
 }
+i.bi-trash-fill {
+  color: rgb(189, 14, 14);
+}
+i.bi-pencil-fill {
+  color: rgba(0, 95, 236, 0.767);
+}
 /* body {
   margin: auto;
   background: url("../img/hero.jpg");

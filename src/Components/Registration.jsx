@@ -7,6 +7,12 @@ import { addDoc, collection } from "firebase/firestore";
 function Registration() {
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
+  const [birthdate, setBirthdate] = useState(null);
+  const [gender, setGender] = useState(null);
+  const [year_level, setYearLevel] = useState(null);
+  const [address, setAddress] = useState(null);
+  const [mobile_num, setMobileNum] = useState(null);
+  const [course, setCourse] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
@@ -14,32 +20,68 @@ function Registration() {
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
-    if (id === "firstName") {
+    if (id == "firstName") {
       setFirstName(value);
     }
-    if (id === "lastName") {
+    if (id == "lastName") {
       setLastName(value);
     }
-    if (id === "email") {
+    if (id == "birthdate") {
+      setBirthdate(value);
+    }
+    if (id == "gender") {
+      setGender(value);
+    }
+    if (id == "year_level") {
+      setYearLevel(value);
+    }
+    if (id == "address") {
+      setAddress(value);
+    }
+    if (id == "mobile_num") {
+      setMobileNum(value);
+    }
+    if (id == "course") {
+      setCourse(value);
+    }
+    if (id == "email") {
       setEmail(value);
     }
-    if (id === "password") {
+    if (id == "password") {
       setPassword(value);
     }
-    if (id === "confirmPassword") {
+    if (id == "confirmPassword") {
       setConfirmPassword(value);
     }
   };
   const studentsCollectionRef = collection(db, "students");
   const handleSubmit = async () => {
     setSpinner(" ");
-    console.log(firstName, lastName, email, password, confirmPassword);
+    console.log(
+      firstName,
+      lastName,
+      birthdate,
+      gender,
+      year_level,
+      address,
+      mobile_num,
+      course,
+      email,
+      password,
+      confirmPassword
+    );
     if (password === confirmPassword) {
       try {
         await createUserWithEmailAndPassword(auth, email, password);
         await addDoc(studentsCollectionRef, {
           firstName: firstName,
           lastName: lastName,
+          birthdate: birthdate,
+          gender: gender,
+          year_level: year_level,
+          address: address,
+          mobile_num: mobile_num,
+          course: course,
           email: email,
           userId: auth?.currentUser?.uid,
         });
@@ -82,13 +124,125 @@ function Registration() {
                   </label>
                   <input
                     type="text"
-                    name=""
                     id="lastName"
                     className="form__input"
                     placeholder="LastName"
                     required
                     onChange={handleInputChange}
                   />
+                </div>
+                <div className="birthdate">
+                  <label>Birhtdate: </label>
+                  <input
+                    type="number"
+                    id="birthdate"
+                    className="form__input"
+                    placeholder="Bithdate"
+                    required
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="gender">
+                  <label>Gender: </label>
+                  <input
+                    type="radio"
+                    className="form__input"
+                    value="male"
+                    name="gender"
+                    onChange={handleInputChange}
+                  />
+                  <label>Male</label>
+                  <input
+                    type="radio"
+                    className="form__input"
+                    value="female"
+                    name="gender"
+                    onChange={handleInputChange}
+                  />
+                  <label>Female</label>
+                  <input
+                    type="radio"
+                    className="form__input"
+                    value="other"
+                    name="gender"
+                    onChange={handleInputChange}
+                  />
+                  <label>Other</label>
+                  <br />
+                </div>
+                <div className="year_level">
+                  <label>Year Level</label>
+                  <input
+                    type="number"
+                    className="form__input"
+                    id="year_level"
+                    required
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="address">
+                  <label>Address: </label>
+                  <input
+                    type="text"
+                    className="form__input"
+                    id="address"
+                    width="200px"
+                    required
+                    onChange={handleInputChange}
+                  />{" "}
+                  <br />
+                </div>
+                <div className="mobile_num">
+                  <label>Mobile Number: </label>
+                  <input
+                    type="number"
+                    className="form__input"
+                    id="mobile_num"
+                    required
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="tele_num">
+                  <label>Telephone Number: </label>
+                  <input
+                    type="number"
+                    className="form_input"
+                    id="mobile_num"
+                    required
+                    onChange={handleInputChange}
+                  />{" "}
+                  <br />
+                </div>
+                <div className="course">
+                  <label>Specified Course: </label>
+                  <select
+                    className="course"
+                    style={{ width: "200px", marginLeft: "20px" }}
+                    required
+                    onChange={handleInputChange}
+                  >
+                    <option value="">Select ..</option>
+                    <option value="BSBA">BS in Business Administration </option>
+                    <option value="BSA">BS in Accountancy </option>
+                    <option value="BSMA">BS in Management Accounting </option>
+                    <option value="BSHRDM">
+                      BS in Human Resource Development Management
+                    </option>
+                    <option value="Tourism">BS in Tourism </option>
+                    <option value="BSIT">BS in Information Technology</option>
+                    <option value="BSCE">BS in Civil Engineering</option>
+                    <option value="BSCpE">BS in Computer Engineering</option>
+                    <option value="BSEE">BS in Electrical Engineering</option>
+                    <option value="BSME">BS in Mechanical Engineering</option>
+                    <option value="BSCRIM">BS in Criminology</option>
+                    <option value="BSEDUC">
+                      Bachelor of Elementary Education
+                    </option>
+                    <option value="BSEDUC">
+                      Bachelor of Secondary Education
+                    </option>
+                  </select>
+                  <br />
                 </div>
                 <div className="email">
                   <label className="form__label" for="email">
