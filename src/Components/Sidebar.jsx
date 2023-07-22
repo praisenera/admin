@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Nav from "react-bootstrap/Nav";
 import { Link } from "react-router-dom";
 import "../css/style.css";
-function Sidebar() {
+import { Badge } from "react-bootstrap";
+function Sidebar(props) {
   return (
     <>
       <div class="sidebar mt-0">
@@ -29,21 +30,19 @@ function Sidebar() {
               color: "black",
             }}
           >
-            Add Student
+            Student Approval
+            <Badge>
+              {
+                props.students?.filter(
+                  (student) =>
+                    student.status != "Approved" && student.status != "Denied"
+                ).length
+              }
+            </Badge>
           </Link>
         </Nav.Link>
         <br />
         {/* <Nav.Link>
-          <Link
-            to="/edit-student"
-            className="link"
-            style={{ paddingLeft: "20px" }}
-          >
-            Edit Student
-          </Link>
-        </Nav.Link> */}
-        {/* <br /> */}
-        <Nav.Link>
           <Link
             to="#"
             style={{
@@ -55,7 +54,7 @@ function Sidebar() {
             Delete Students
           </Link>
         </Nav.Link>
-        <br />
+        <br /> */}
       </div>
     </>
   );

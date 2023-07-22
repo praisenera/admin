@@ -19,16 +19,12 @@ function AdminDashboard(props) {
   //   setEditedStudent(student);
   // };
 
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
   return (
     <>
-      <Sidebar />
-      <div className="content">
-        <h2>Enrolled Students</h2>
-        <table class="table mt-5 text-center">
+      <Sidebar students={students} />
+      <div className="content mt-5">
+        <h2 className="mt-5">Approved Students</h2>
+        <table class="table text-center">
           <tr>
             <th>Student ID</th>
             <th>Name</th>
@@ -41,60 +37,47 @@ function AdminDashboard(props) {
             <th>Action</th>
           </tr>
           <tbody>
-            {students?.map((student) => (
-              <tr>
-                <td>{student.id}</td>
-                <td>
-                  {student.lastName}
-                  {", "}
-                  {student.firstName}
-                </td>
-                <td>{student.gender}</td>
-                <td>{student.bdate}</td>
-                <td>{student.yearlevel}</td>
-                <td>{student.course}</td>
-                <td>{student.email}</td>
-                <td>{student.homead}</td>
-                <td>
-                  <Link to="#">
-                    <i
-                      className="bi bi-trash-fill pe-2"
-                      variant="danger"
-                      onClick={handleShow}
-                    ></i>
-                  </Link>
-                  <Link to="/edit-student">
-                    <i
-                      className="bi bi-pencil-fill"
-                      variant="primary"
-                      // onClick={handleEdit}
-                    ></i>
-                  </Link>
-                </td>
-              </tr>
-            ))}
+            {students
+              ?.filter((student) => student.status == "Approved")
+              .map((student) => (
+                <tr>
+                  <td>{student.id}</td>
+                  <td>
+                    {student.lastName}
+                    {", "}
+                    {student.firstName}
+                  </td>
+                  <td>{student.gender}</td>
+                  <td>{student.birthdate}</td>
+                  <td>{student.yearLevel}</td>
+                  <td>{student.course}</td>
+                  <td>{student.email}</td>
+                  <td>{student.homead}</td>
+                  <td>
+                    <Link
+                      to={`/student/${student.id}`}
+                      style={{
+                        paddingLeft: "20px",
+                        textDecoration: "none",
+                        color: "black",
+                      }}
+                    >
+                      <Button>View Student</Button>
+                    </Link>
+                    <Link
+                      to={`/edit/${student.id}`}
+                      style={{
+                        paddingLeft: "20px",
+                        textDecoration: "none",
+                        color: "black",
+                      }}
+                    >
+                      <Button>edit Student</Button>
+                    </Link>
+                  </td>
+                </tr>
+              ))}
           </tbody>
-          <Modal
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-            show={show}
-            onHide={handleClose}
-          >
-            <Modal.Header closeButton>
-              <Modal.Title>Delete Student</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              Are you sure you want to delete this student information?
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="primary" onClick={handleClose}>
-                Yes
-              </Button>
-              <Button variant="warning" onClick={handleClose}>
-                No
-              </Button>
-            </Modal.Footer>
-          </Modal>
         </table>
       </div>
     </>

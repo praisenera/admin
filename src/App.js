@@ -2,7 +2,7 @@ import Login from "./Components/Login";
 import Registration from "./Components/Registration";
 import AdminDashboard from "./Components/AdminDashboard";
 import OffcanvasExample from "./NavComponent";
-import EnrollmentForm from "./Components/Enrollment1";
+import EnrollmentForm from "./Components/Enrollment";
 import EditStudent from "./Components/EditStudents";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
@@ -13,19 +13,27 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
 import { auth, db } from "./config/firebaseconfig";
 import { useEffect, useState } from "react";
+import ApproveStudents from "./Components/Approval";
+import StudentViewerEditor from "./Components/Registration";
 
 function App() {
   const dbRefstd = collection(db, "students");
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setCount((count) => count + 1);
+    }, 1000);
+  }, [count]);
   const [students, setStudents] = useState([]);
   const getstudents = async () => {
+    console.log("get students");
     try {
       const data = await getDocs(dbRefstd);
-      const filteredData = data.docs
-        .map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        }))
-        .filter((doc) => doc.userId != auth?.currentUser?.uid);
+      const filteredData = data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
       setStudents(filteredData);
       console.log(filteredData);
     } catch (err) {
@@ -43,31 +51,55 @@ function App() {
 
   return (
     <Router>
-      {console.log(students)}
       <OffcanvasExample />
       <Routes>
         <Route
-          path="/edit-student"
+          path="/edit/:id"
           element={
             <>
-              <EditStudent />
-            </>
-          }
-        />
-        <Route
-          path="/add-student"
-          element={
-            <>
-              <EnrollmentForm students={students} getstudents={getstudents} />
+              <EditStudent
+                students={students}
+                key={students}
+                getstudents={getstudents}
+              />
             </>
           }
         />
 
         <Route
+          path="/add-student"
+          element={
+            <>
+              <ApproveStudents
+                students={students}
+                key={students}
+                getstudents={getstudents}
+              />
+            </>
+          }
+        />
+
+        <Route
+          path="/student/:id"
+          element={
+            <>
+              <StudentViewerEditor
+                students={students}
+                key={students}
+                getstudents={getstudents}
+              />
+            </>
+          }
+        />
+        <Route
           path="/admin-dashboard"
           element={
             <>
-              <AdminDashboard students={students} />
+              <AdminDashboard
+                students={students}
+                key={students}
+                getstudents={getstudents}
+              />
             </>
           }
         />

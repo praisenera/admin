@@ -8,6 +8,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { auth } from "./config/firebaseconfig";
 import { useEffect, useState } from "react";
 import { signOut } from "firebase/auth";
+import { Row } from "react-bootstrap";
 
 function OffcanvasExample() {
   const [count, setCount] = useState(0);
@@ -28,75 +29,79 @@ function OffcanvasExample() {
   };
 
   return (
-    <>
-      {["lg"].map((expand) => (
-        <Navbar
-          key={expand}
-          expand={expand}
-          className="mb-3 fixed-top"
-          style={{ background: "white" }}
-        >
-          <Container fluid>
-            <Navbar.Brand>
-              <img
-                src={require("./img/cct_logo.jpg")}
-                alt="logo"
-                style={{ width: "60px" }}
+    <Row>
+      <>
+        {["lg"].map((expand) => (
+          <Navbar
+            key={expand}
+            expand={expand}
+            className="mb-3 fixed-top"
+            style={{ background: "white" }}
+          >
+            <Container fluid>
+              <Navbar.Brand>
+                <img
+                  src={require("./img/logo.jpg")}
+                  alt="logo"
+                  style={{ width: "60px" }}
+                />
+                Christian College of Tanauan
+              </Navbar.Brand>
+              <Navbar.Toggle
+                aria-controls={`offcanvasNavbar-expand-${expand}`}
               />
-              Christian College of Tanauan
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
-            <Navbar.Offcanvas
-              id={`offcanvasNavbar-expand-${expand}`}
-              aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-              placement="end"
-            >
-              <Offcanvas.Header closeButton>
-                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                  Offcanvas
-                </Offcanvas.Title>
-              </Offcanvas.Header>
-              <Offcanvas.Body>
-                <Nav className="justify-content-end flex-grow-1 pe-3">
-                  {auth.currentUser ? (
-                    <>
-                      <Nav.Link>
-                        <Link
-                          to="/admin-dashboard"
-                          className="link"
-                          style={{ paddingLeft: "20px" }}
-                        >
-                          dashboard
-                        </Link>
-                      </Nav.Link>
+              <Navbar.Offcanvas
+                id={`offcanvasNavbar-expand-${expand}`}
+                aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+                placement="end"
+              >
+                <Offcanvas.Header closeButton>
+                  <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                    Offcanvas
+                  </Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                  <Nav className="justify-content-end flex-grow-1 pe-3">
+                    {auth.currentUser ? (
+                      <>
+                        <Nav.Link>
+                          <Link
+                            to="/admin-dashboard"
+                            className="link"
+                            style={{ paddingLeft: "20px" }}
+                          >
+                            dashboard
+                          </Link>
+                        </Nav.Link>
 
-                      <Nav.Link>
-                        <Link
-                          to="/logout"
-                          className="link"
-                          onClick={logout}
-                          style={{ paddingLeft: "20px" }}
-                        >
-                          Logout
-                        </Link>
-                      </Nav.Link>
-                    </>
-                  ) : (
-                    <>
-                      <Nav.Link>
-                        <Link className="link" to="/">
-                          Login
-                        </Link>
-                      </Nav.Link>
-                    </>
-                  )}
-                </Nav>
-              </Offcanvas.Body>
-            </Navbar.Offcanvas>
-          </Container>
-        </Navbar>
-      ))}
-    </>
+                        <Nav.Link>
+                          <Link
+                            to="/logout"
+                            className="link"
+                            onClick={logout}
+                            style={{ paddingLeft: "20px" }}
+                          >
+                            Logout
+                          </Link>
+                        </Nav.Link>
+                      </>
+                    ) : (
+                      <>
+                        <Nav.Link>
+                          <Link className="link" to="/">
+                            Login
+                          </Link>
+                        </Nav.Link>
+                      </>
+                    )}
+                  </Nav>
+                </Offcanvas.Body>
+              </Navbar.Offcanvas>
+            </Container>
+          </Navbar>
+        ))}
+      </>
+    </Row>
   );
 }
 
