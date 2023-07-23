@@ -67,7 +67,7 @@ function App() {
         />
 
         <Route
-          path="/add-student"
+          path="/student-approval"
           element={
             <>
               <ApproveStudents

@@ -115,8 +115,8 @@ function EditStudent(props) {
                     id="gender"
                     style={{ marginLeft: "130px" }}
                     value={gen}
-                    checked={student.gender == "male"}
-                    onChange={(e) => setGen(e.target.value)}
+                    checked={gen == "male"}
+                    onClick={(e) => setGen(e.target.value)}
                   />
                   <label>Male</label>
                   <input
@@ -124,8 +124,8 @@ function EditStudent(props) {
                     value={gen}
                     id="gender"
                     name="gender"
-                    checked={student.gender == "female"}
-                    onChange={(e) => setGen(e.target.value)}
+                    checked={gen == "female"}
+                    onClick={(e) => setGen(e.target.value)}
                   />
                   <label>Female</label>
                   <input
@@ -133,8 +133,8 @@ function EditStudent(props) {
                     value={gen}
                     id="gender"
                     name="gender"
-                    checked={student.gender == "other"}
-                    onChange={(e) => setGen(e.target.value)}
+                    checked={gen == "other"}
+                    onClick={(e) => setGen(e.target.value)}
                   />
                   <label>Other</label>
                 </div>

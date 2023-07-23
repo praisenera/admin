@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Nav from "react-bootstrap/Nav";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
@@ -7,23 +7,89 @@ import Modal from "react-bootstrap/Modal";
 import "../css/style.css";
 import Sidebar from "./Sidebar";
 import { auth } from "../config/firebaseconfig";
+import { Accordion, Card, Pagination } from "react-bootstrap";
 
 function AdminDashboard(props) {
-  const students = props?.students?.filter((x) => x.course);
+  const students = props?.students?.filter(
+    (student) => student.status == "Approved"
+  );
 
-  // const [editMode, setEditMode] = useState(false);
-  // const [editedStudent, setEditedStudent] = useState({});
+  const [pagination, setPagination] = useState(1);
+  const paginationqty = 1;
+  const [render, setRender] = useState(true);
+  const [email, setEmail] = useState("");
+  const [studlist, setStudlist] = useState(students);
 
-  // const handleEdit = (student) => {
-  //   setEditMode(true);
-  //   setEditedStudent(student);
-  // };
+  useEffect(() => {
+    let x = [...props.students];
+    setPagination(1);
+    if (email) {
+      x = x.filter((a) => a.email.includes(email));
+    }
+    setStudlist(x);
+  }, [render]);
 
+  const functionCall = (event) => {
+    setPagination(event.target.getAttribute("a-key"));
+    topFunction();
+  };
+
+  const topFunction = () => {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+  };
   return (
     <>
       <Sidebar students={students} />
       <div className="content mt-5">
         <h2 className="mt-5">Approved Students</h2>
+        <Accordion>
+          <Accordion.Item eventKey="0">
+            <Accordion.Header>Filters</Accordion.Header>
+            <Accordion.Body>
+              <label>Filter by email: </label>
+              <input
+                className="form__input"
+                type="text"
+                id="firstName"
+                placeholder={""}
+                style={{ marginLeft: "100px" }}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setRender(!render);
+                }}
+                value={email}
+              />
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
+
+        <Pagination>
+          {(() => {
+            let td = [];
+            for (
+              let i = 1;
+              i <=
+              Math.ceil(
+                studlist.filter((student) => student.status == "Approved")
+                  .length / paginationqty
+              );
+              i++
+            ) {
+              td.push(
+                <Pagination.Item
+                  key={i}
+                  a-key={i}
+                  onClick={functionCall}
+                  active={i == pagination}
+                >
+                  {i}
+                </Pagination.Item>
+              );
+            }
+            return td;
+          })()}
+        </Pagination>
         <table class="table">
           <tr>
             <th>Student ID</th>
@@ -36,9 +102,13 @@ function AdminDashboard(props) {
             <th>Address</th>
             <th>Action</th>
           </tr>
-          <tbody >
-            {students
+          <tbody>
+            {studlist
               ?.filter((student) => student.status == "Approved")
+              .slice(
+                (pagination - 1) * paginationqty,
+                pagination * paginationqty
+              )
               .map((student) => (
                 <tr style={{ fontSize: "13px" }}>
                   <td>{student.id}</td>
