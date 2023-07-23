@@ -21,10 +21,10 @@ function AdminDashboard(props) {
   const [studlist, setStudlist] = useState(students);
 
   useEffect(() => {
-    let x = [...props.students];
+    let x = students;
     setPagination(1);
     if (email) {
-      x = x.filter((a) => a.email.includes(email));
+      x = x?.filter((a) => a.email.includes(email));
     }
     setStudlist(x);
   }, [render]);
@@ -71,7 +71,7 @@ function AdminDashboard(props) {
               let i = 1;
               i <=
               Math.ceil(
-                studlist.filter((student) => student.status == "Approved")
+                studlist?.filter((student) => student.status == "Approved")
                   .length / paginationqty
               );
               i++
