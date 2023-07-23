@@ -18,12 +18,19 @@ function EditStudent(props) {
   const [fname, setFname] = useState(student.firstName);
   const [lname, setLname] = useState(student.lastName);
   const [date, setDate] = useState(student.birthdate);
-  const [mother_name, setMotherName] = useState("");
-  const [con_mom, setConMother] = useState("");
-  const [father_name, setFatherName] = useState("");
-  const [con_pops, setConFather] = useState("");
-  const [guardian_name, setGuardianName] = useState("");
-  const [con_guard, setConGuard] = useState("");
+  const [gen, setGen] = useState(student.gender);
+  const [yLevel, setYLevel] = useState(student.yearLevel);
+  const [add, setAdd] = useState(student.address);
+  const [mNum, setMNum] = useState(student.mobileNum);
+  const [tNum, setTNum] = useState(student.telNum);
+  const [e_mail, setE_mail] = useState(student.email);
+  const [courses, setCourses] = useState(student.course);
+  const [mName, setMName] = useState(student.mother_name);
+  const [con_mom, setConMother] = useState(student.con_mom);
+  const [fName, setFName] = useState(student.father_name);
+  const [con_pops, setConFather] = useState(student.con_pops);
+  const [gName, setGName] = useState(student.guradian_name);
+  const [con_guardian, setConGuard] = useState(student.con_guard);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -34,6 +41,19 @@ function EditStudent(props) {
         firstName: fname,
         lastName: lname,
         birthdate: date,
+        gender: gen,
+        yearLevel: yLevel,
+        address: add,
+        mobileNum: mNum,
+        telNum: tNum,
+        email: e_mail,
+        course: courses,
+        mother_name: mName,
+        con_mom: con_mom,
+        father_name: fName,
+        con_pops: con_pops,
+        guardian_name: gName,
+        con_guard: con_guardian,
       });
       await props.getstudents();
     } catch (err) {
@@ -51,7 +71,8 @@ function EditStudent(props) {
         <Col className="mt-5">
           <Form className="mt-5">
             <Row>
-              <Col>
+              <h2 className="pt-3 ps-3">Student Information</h2>
+              <Col className="col-lg-6">
                 <div className="first_name">
                   <label>First Name: </label>
                   <input
@@ -93,24 +114,27 @@ function EditStudent(props) {
                     name="gender"
                     id="gender"
                     style={{ marginLeft: "130px" }}
-                    placeholder={student.gender}
+                    value={gen}
                     checked={student.gender == "male"}
+                    onChange={(e) => setGen(e.target.value)}
                   />
                   <label>Male</label>
                   <input
                     type="radio"
-                    value={student.gender}
+                    value={gen}
                     id="gender"
                     name="gender"
                     checked={student.gender == "female"}
+                    onChange={(e) => setGen(e.target.value)}
                   />
                   <label>Female</label>
                   <input
                     type="radio"
-                    value={student.gender}
+                    value={gen}
                     id="gender"
                     name="gender"
                     checked={student.gender == "other"}
+                    onChange={(e) => setGen(e.target.value)}
                   />
                   <label>Other</label>
                 </div>
@@ -122,18 +146,22 @@ function EditStudent(props) {
                     max="5"
                     id="yearLevel"
                     style={{ marginLeft: "105px" }}
-                    value={student.yearLevel}
+                    placeholder={student.yearLevel}
+                    value={yLevel}
+                    onChange={(e) => setYLevel(e.target.value)}
                   />
                 </div>
+
                 <div className="address">
                   <label>Address: </label>
                   <input
                     type="text"
                     id="address"
                     width="200px"
-                    placeholder="ex. Sitio Malitlit San Miguel Sto.Tomas"
+                    placeholder={student.address}
                     style={{ marginLeft: "120px" }}
-                    value={student.address}
+                    value={add}
+                    onChange={(e) => setAdd(e.target.value)}
                   />
                 </div>
                 <div className="mobile_num">
@@ -141,9 +169,10 @@ function EditStudent(props) {
                   <input
                     type="number"
                     id="mobileNum"
-                    placeholder="ex.09123456789"
+                    placeholder={student.mobileNum}
                     style={{ marginLeft: "63px" }}
-                    value={student.mobileNum}
+                    value={mNum}
+                    onChange={(e) => setMNum(e.target.value)}
                   />
                 </div>
                 <div className="tel_num">
@@ -151,9 +180,10 @@ function EditStudent(props) {
                   <input
                     type="number"
                     id="telNum"
-                    placeholder="ex.(02)-12345674"
+                    placeholder={student.telNum}
                     style={{ marginLeft: "32px" }}
-                    value={student.telNum}
+                    value={tNum}
+                    onChange={(e) => setTNum(e.target.value)}
                   />
                 </div>
                 <div className="email">
@@ -162,9 +192,9 @@ function EditStudent(props) {
                     type="email"
                     id="email"
                     width="100px"
-                    placeholder="ex. juan@gmail.com"
+                    placeholder={student.email}
                     style={{ marginLeft: "70px" }}
-                    value={student.email}
+                    value={e_mail}
                   />
                 </div>
                 <div className="course">
@@ -172,7 +202,10 @@ function EditStudent(props) {
                   <select
                     className="course"
                     id="course"
+                    value={courses}
                     style={{ width: "200px", marginLeft: "50px" }}
+                    placeholder={student.course}
+                    onChange={(e) => setCourses(e.target.value)}
                   >
                     <option value="">Select ..</option>
                     <option selected={student.course == "BSBA"}>
@@ -218,7 +251,7 @@ function EditStudent(props) {
                 </div>
               </Col>
 
-              <Col>
+              <Col className="col-lg-6">
                 <h3>Parents Information</h3>
                 <div className="mothers_name">
                   <label className="mother_name">Mothers Name: </label>
@@ -226,9 +259,10 @@ function EditStudent(props) {
                     type="text"
                     name="mother"
                     id="mother_name"
-                    placeholder="Mothers Name"
+                    placeholder={student.mother_name}
                     style={{ marginLeft: "65px" }}
-                    onChange={(e) => setMotherName(e.target.value)}
+                    value={mName}
+                    onChange={(e) => setMName(e.target.value)}
                   />
                 </div>
                 <div className="con_mom">
@@ -237,8 +271,9 @@ function EditStudent(props) {
                     type="text"
                     name="contact_mom"
                     id="con_mom"
-                    placeholder="ex. 09123456789"
+                    placeholder={student.con_mom}
                     style={{ marginLeft: "47px" }}
+                    value={con_mom}
                     onChange={(e) => setConMother(e.target.value)}
                   />
                 </div>
@@ -248,9 +283,10 @@ function EditStudent(props) {
                     type="text"
                     name="father"
                     id="father_name"
-                    placeholder="Fathers Name"
+                    placeholder={student.father_name}
                     style={{ marginLeft: "70px" }}
-                    onChange={(e) => setFatherName(e.target.value)}
+                    value={fName}
+                    onChange={(e) => setFName(e.target.value)}
                   />
                 </div>
                 <div className="con_pop">
@@ -259,20 +295,22 @@ function EditStudent(props) {
                     type="text"
                     name="contact_pop"
                     id="con_pops"
-                    placeholder="09123456789"
+                    placeholder={student.con_pops}
                     style={{ marginLeft: "47px" }}
+                    value={con_pops}
                     onChange={(e) => setConFather(e.target.value)}
                   />
                 </div>
                 <div className="guardian">
-                  <label className="father_name">Guardins Name: </label>
+                  <label className="father_name">Guardians Name: </label>
                   <input
                     type="text"
                     name="guardian"
                     id="guardian_name"
-                    placeholder="Guardians Name"
-                    style={{ marginLeft: "55px" }}
-                    onChange={(e) => setGuardianName(e.target.value)}
+                    style={{ marginLeft: "45px" }}
+                    placeholder={student.guardian_name}
+                    value={gName}
+                    onChange={(e) => setGName(e.target.value)}
                   />
                 </div>
                 <div className="con_guard">
@@ -281,8 +319,9 @@ function EditStudent(props) {
                     type="text"
                     name="contact_guard"
                     id="con_guard"
-                    placeholder="09123456789"
+                    placeholder={student.con_guard}
                     style={{ marginLeft: "47px" }}
+                    value={con_guardian}
                     onChange={(e) => setConGuard(e.target.value)}
                   />
                 </div>

@@ -54,8 +54,8 @@ function ApproveStudents(props) {
       <Sidebar students={students} />
       <div className="content mt-5">
         <h2 className="mt-5">Students pending approval</h2>
-        <table className="table mt-3 text-center">
-          <tr>
+        <table className="table col-lg-12 mt-3 text-center">
+          <tr className="text-center">
             <th>Student ID</th>
             <th>Name</th>
             <th>Gender</th>
@@ -63,7 +63,6 @@ function ApproveStudents(props) {
             <th>Year Level</th>
             <th>Course</th>
             <th>Email</th>
-
             <th>Action</th>
           </tr>
           <tbody>
@@ -94,7 +93,7 @@ function ApproveStudents(props) {
                   </td>
                   <td>{student.gender}</td>
                   <td>{student.birthdate}</td>
-                  <td>{student.yearLevel}</td>
+                  <td style={{ width: "200px" }}>{student.yearLevel}</td>
                   <td>{student.course}</td>
                   <td>{student.email}</td>
                   <td>

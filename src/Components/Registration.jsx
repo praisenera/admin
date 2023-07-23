@@ -15,36 +15,48 @@ function StudentViewerEditor(props) {
     <>
       <Sidebar students={students} />
       <div className="col-lg-9">
-        <div className="row-logo pt-3">
-          <img
-            src={require("../img/logo.jpg")}
-            alt="logo"
-            style={{ width: "80px", marginLeft: "1200px" }}
-          />
-        </div>
-        <Container style={{ marginLeft: "250px", paddingTop: "50px" }}>
+        <Container style={{ marginLeft: "250px", paddingTop: "100px" }}>
           <Row>
-            <h1>Student Profile:{student.id}</h1>
+            <h3>Student Profile:{student.id}</h3>
             <h5 className="pt-3">
-              Status:
+              Status:{" "}
               {student.status ? student.status : "Waiting for approval...."}
             </h5>
           </Row>
           <Row className="pt-4 ps-5">
             <div className="col-lg-6">
-              <h3>
-                Name of Student: {student.lastName}, {student.firstName}
-              </h3>
-              <p className="pt-3">Birthdate:{student.birthdate} </p>
-              <p>Address: </p>
-              <p>Email: </p>
-              <p>Course:</p>
-              <p>Year Level: </p>
-              <p>Contact Number:</p>
-            </div>
-            <div className="col-lg-6 pt-4">
-              <p className="pt-3">Section: N/A </p>
-              <p>Adviser: N/A</p>
+              <h4>
+                {student.lastName}, {student.firstName}
+              </h4>
+
+              <tr>
+                <td className="pt-3 pb-3">
+                  Birthdate: <span className="ms-2">{student.birthdate}</span>
+                </td>
+              </tr>
+              <tr>
+                <td className="pb-3">
+                  Address: <span className="ms-2 ">{student.address}</span>
+                </td>
+              </tr>
+              <tr>
+                <td className="pb-3">
+                  Email: <span className="ms-2">{student.email}</span>
+                </td>
+              </tr>
+              <tr>
+                <td className="pb-3">
+                  Course: <span className="ms-2">{student.course}</span>
+                </td>
+              </tr>
+              <tr>
+                <td className="pb-3">
+                  Year Level: <span className="ms-2">{student.yearLevel}</span>
+                </td>
+              </tr>
+              <tr className="pb-3">
+                <td>Contact Number: {student.mobileNum}</td>
+              </tr>
             </div>
           </Row>
         </Container>

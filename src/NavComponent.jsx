@@ -68,9 +68,13 @@ function OffcanvasExample() {
                           <Link
                             to="/admin-dashboard"
                             className="link"
-                            style={{ paddingLeft: "20px" }}
+                            style={{
+                              paddingLeft: "20px",
+                              textDecoration: "none",
+                              color: "black",
+                            }}
                           >
-                            dashboard
+                            Dashboard
                           </Link>
                         </Nav.Link>
 
@@ -79,7 +83,11 @@ function OffcanvasExample() {
                             to="/logout"
                             className="link"
                             onClick={logout}
-                            style={{ paddingLeft: "20px" }}
+                            style={{
+                              paddingLeft: "20px",
+                              textDecoration: "none",
+                              color: "black",
+                            }}
                           >
                             Logout
                           </Link>
@@ -88,7 +96,11 @@ function OffcanvasExample() {
                     ) : (
                       <>
                         <Nav.Link>
-                          <Link className="link" to="/">
+                          <Link
+                            className="link"
+                            to="/"
+                            style={{ textDecoration: "none", color: "black" }}
+                          >
                             Login
                           </Link>
                         </Nav.Link>

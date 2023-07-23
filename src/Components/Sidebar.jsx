@@ -6,8 +6,10 @@ import { Badge } from "react-bootstrap";
 function Sidebar(props) {
   return (
     <>
-      <div class="sidebar mt-0">
-        <h4 style={{ padding: "16px" }}>Admin Dashboard</h4>
+      <div class="sidebar" style={{ marginTop: "90px" }}>
+        <h5 style={{ padding: "16px" }}>
+          <b>Admin Dashboard</b>
+        </h5>
         <Nav.Link>
           <Link
             to="/admin-dashboard"
@@ -23,7 +25,7 @@ function Sidebar(props) {
         <br />
         <Nav.Link>
           <Link
-            to="/add-student"
+            to="/student-approval"
             style={{
               paddingLeft: "20px",
               textDecoration: "none",

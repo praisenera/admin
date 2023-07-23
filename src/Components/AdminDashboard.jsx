@@ -24,7 +24,7 @@ function AdminDashboard(props) {
       <Sidebar students={students} />
       <div className="content mt-5">
         <h2 className="mt-5">Approved Students</h2>
-        <table class="table text-center">
+        <table class="table">
           <tr>
             <th>Student ID</th>
             <th>Name</th>
@@ -36,11 +36,11 @@ function AdminDashboard(props) {
             <th>Address</th>
             <th>Action</th>
           </tr>
-          <tbody>
+          <tbody >
             {students
               ?.filter((student) => student.status == "Approved")
               .map((student) => (
-                <tr>
+                <tr style={{ fontSize: "13px" }}>
                   <td>{student.id}</td>
                   <td>
                     {student.lastName}
@@ -52,27 +52,35 @@ function AdminDashboard(props) {
                   <td>{student.yearLevel}</td>
                   <td>{student.course}</td>
                   <td>{student.email}</td>
-                  <td>{student.homead}</td>
+                  <td>{student.address}</td>
                   <td>
                     <Link
                       to={`/student/${student.id}`}
                       style={{
-                        paddingLeft: "20px",
                         textDecoration: "none",
                         color: "black",
                       }}
                     >
-                      <Button>View Student</Button>
+                      <Button
+                        className="mb-2"
+                        style={{ width: "100px", fontSize: "11px" }}
+                      >
+                        View Student
+                      </Button>
                     </Link>
                     <Link
                       to={`/edit/${student.id}`}
                       style={{
-                        paddingLeft: "20px",
                         textDecoration: "none",
                         color: "black",
                       }}
                     >
-                      <Button>edit Student</Button>
+                      <Button
+                        variant="warning"
+                        style={{ width: "100px", fontSize: "12px" }}
+                      >
+                        edit Student
+                      </Button>
                     </Link>
                   </td>
                 </tr>
