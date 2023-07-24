@@ -194,9 +194,26 @@ function ApproveStudents(props) {
                             color: "black",
                           }}
                         >
-                          <Button>View Student</Button>
+                          <Button
+                            className="mb-2"
+                            style={{
+                              width: "100px",
+                              fontSize: "11px",
+                            }}
+                          >
+                            View Student
+                          </Button>
                         </Link>
-                        <Button value={student.id} onClick={updateStatusReview}>
+                        <Button
+                          variant="warning"
+                          style={{
+                            width: "100px",
+                            fontSize: "11px",
+                            marginLeft: "18px",
+                          }}
+                          value={student.id}
+                          onClick={updateStatusReview}
+                        >
                           Review
                         </Button>
                       </>
