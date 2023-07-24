@@ -23,7 +23,9 @@ function AdminDashboard(props) {
   const [studlist, setStudlist] = useState(students);
 
   useEffect(() => {
-    let x = students.sort((a, b) => a.lastName.localeCompare(b.lastName));
+    let x = students.sort((a, b) =>
+      a.lastName.localeCompare(b.lastName, "en", { ignorePunctuation: true })
+    );
     setPagination(1);
 
     if (email) {
