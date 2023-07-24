@@ -108,7 +108,11 @@ function App() {
           path="/"
           element={
             <>
-              <Login />
+              <Login
+                students={students}
+                key={students}
+                getstudents={getstudents}
+              />
             </>
           }
         />
@@ -116,7 +120,11 @@ function App() {
           path="/admin"
           element={
             <>
-              <Login />
+              <Login
+                students={students}
+                key={students}
+                getstudents={getstudents}
+              />
             </>
           }
         />
