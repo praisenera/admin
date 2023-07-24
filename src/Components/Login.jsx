@@ -7,7 +7,7 @@ import { Button, Spinner } from "react-bootstrap";
 import Sidebar from "./Sidebar";
 import AdminDashboard from "./AdminDashboard";
 
-function Login() {
+function Login(props) {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [spinner, setSpinner] = useState("");
@@ -20,7 +20,10 @@ function Login() {
       setPassword(value);
     }
   };
+  const [render, setRender] = useState(true);
 
+  const students = props.students;
+  const getstudents = () => props.getstudents();
   const handleSubmit = async () => {
     setSpinner(" ");
     try {
@@ -28,11 +31,14 @@ function Login() {
         await signInWithEmailAndPassword(auth, email, password + " ");
       }
       await signInWithEmailAndPassword(auth, email, password);
+      await getstudents();
+      setRender(!render);
     } catch (err) {
       console.error(err);
     }
     setSpinner("");
   };
+
   // const createAccount = async () => {
   //   try {
   //     await createUserWithEmailAndPassword(auth, email, password);
@@ -44,7 +50,11 @@ function Login() {
     <>
       {auth.currentUser ? (
         <>
-          <AdminDashboard />
+          <AdminDashboard
+            students={students}
+            key={students}
+            getstudents={getstudents}
+          />
         </>
       ) : (
         <>

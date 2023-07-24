@@ -10,22 +10,31 @@ import { auth } from "../config/firebaseconfig";
 import { Accordion, Card, Pagination } from "react-bootstrap";
 
 function AdminDashboard(props) {
-  const students = props?.students?.filter(
-    (student) => student.status == "Approved"
-  );
+  const x = props.students;
+  const students = props?.students
+    ?.filter((student) => student.status == "Approved")
+    .sort((a, b) => b.lastName - a.lastName);
 
   const [pagination, setPagination] = useState(1);
   const paginationqty = 20;
   const [render, setRender] = useState(true);
   const [email, setEmail] = useState("");
+  const [lastname, setLastname] = useState("");
   const [studlist, setStudlist] = useState(students);
 
   useEffect(() => {
-    let x = students;
+    let x = students.sort((a, b) => a.lastName.localeCompare(b.lastName));
     setPagination(1);
+
     if (email) {
       x = x.filter((a) => a.email?.includes(email));
     }
+    if (lastname) {
+      x = x.filter((a) =>
+        a.lastName?.toLowerCase().includes(lastname.toLowerCase())
+      );
+    }
+
     setStudlist(x);
   }, [render]);
 
@@ -40,14 +49,27 @@ function AdminDashboard(props) {
   };
   return (
     <>
-      <Sidebar students={students} />
+      <Sidebar students={x} />
       <div className="content mt-5">
         <h2 className="mt-5">Approved Students</h2>
         <Accordion>
           <Accordion.Item eventKey="0">
             <Accordion.Header>Filter</Accordion.Header>
             <Accordion.Body>
-              <label>Filter by email: </label>
+              <label>Filter by Last Name: </label>
+              <input
+                className="form__input"
+                type="text"
+                id="firstName"
+                placeholder={""}
+                style={{ marginLeft: "100px" }}
+                onChange={(e) => {
+                  setLastname(e.target.value);
+                  setRender(!render);
+                }}
+                value={lastname}
+              />
+              <label>Filter by Email: </label>
               <input
                 className="form__input"
                 type="text"
