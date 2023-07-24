@@ -86,15 +86,15 @@ function ApproveStudents(props) {
                       {student.id}
                     </Link>
                   </td>
-                  <td>
+                  <td style={{ width: "150px" }}>
                     {student.lastName}
                     {", "}
                     {student.firstName}
                   </td>
                   <td>{student.gender}</td>
-                  <td>{student.birthdate}</td>
-                  <td style={{ width: "200px" }}>{student.yearLevel}</td>
-                  <td>{student.course}</td>
+                  <td style={{ width: "150px" }}>{student.birthdate}</td>
+                  <td style={{ width: "100px" }}>{student.yearLevel}</td>
+                  <td style={{ width: "100px" }}>{student.course}</td>
                   <td>{student.email}</td>
                   <td>
                     {spin ? (
@@ -109,15 +109,35 @@ function ApproveStudents(props) {
                             color: "black",
                           }}
                         >
-                          <Button>View Student</Button>
+                          <Button
+                            style={{
+                              width: "100px",
+                              fontSize: "11px",
+                            }}
+                            className="mb-2"
+                          >
+                            View Student
+                          </Button>
                         </Link>
                         <Button
+                          variant="success"
+                          className="mb-2"
+                          style={{
+                            width: "100px",
+                            fontSize: "11px",
+                            marginLeft: "18px",
+                          }}
                           value={student.id}
                           onClick={updateStatusApprove}
                         >
                           Approve
                         </Button>
                         <Button
+                          style={{
+                            width: "100px",
+                            fontSize: "11px",
+                            marginLeft: "18px",
+                          }}
                           variant="danger"
                           value={student.id}
                           onClick={updateStatusDenied}
@@ -151,15 +171,15 @@ function ApproveStudents(props) {
               .map((student) => (
                 <tr>
                   <td>{student.id}</td>
-                  <td>
+                  <td style={{ width: "150px" }}>
                     {student.lastName}
                     {", "}
                     {student.firstName}
                   </td>
                   <td>{student.gender}</td>
-                  <td>{student.birthdate}</td>
-                  <td>{student.yearLevel}</td>
-                  <td>{student.course}</td>
+                  <td style={{ width: "150px" }}>{student.birthdate}</td>
+                  <td style={{ width: "100px" }}>{student.yearLevel}</td>
+                  <td style={{ width: "100px" }}>{student.course}</td>
                   <td>{student.email}</td>
                   <td>
                     {spin ? (

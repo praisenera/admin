@@ -15,7 +15,7 @@ function AdminDashboard(props) {
   );
 
   const [pagination, setPagination] = useState(1);
-  const paginationqty = 1;
+  const paginationqty = 20;
   const [render, setRender] = useState(true);
   const [email, setEmail] = useState("");
   const [studlist, setStudlist] = useState(students);
@@ -24,7 +24,7 @@ function AdminDashboard(props) {
     let x = students;
     setPagination(1);
     if (email) {
-      x = x?.filter((a) => a.email.includes(email));
+      x = x.filter((a) => a.email?.includes(email));
     }
     setStudlist(x);
   }, [render]);
@@ -45,7 +45,7 @@ function AdminDashboard(props) {
         <h2 className="mt-5">Approved Students</h2>
         <Accordion>
           <Accordion.Item eventKey="0">
-            <Accordion.Header>Filters</Accordion.Header>
+            <Accordion.Header>Filter</Accordion.Header>
             <Accordion.Body>
               <label>Filter by email: </label>
               <input
@@ -64,7 +64,7 @@ function AdminDashboard(props) {
           </Accordion.Item>
         </Accordion>
 
-        <Pagination>
+        <Pagination className="mt-3">
           {(() => {
             let td = [];
             for (
@@ -90,7 +90,7 @@ function AdminDashboard(props) {
             return td;
           })()}
         </Pagination>
-        <table class="table">
+        <table class="table text-center">
           <tr>
             <th>Student ID</th>
             <th>Name</th>
@@ -112,14 +112,14 @@ function AdminDashboard(props) {
               .map((student) => (
                 <tr style={{ fontSize: "13px" }}>
                   <td>{student.id}</td>
-                  <td>
+                  <td style={{ width: "100px" }}>
                     {student.lastName}
                     {", "}
                     {student.firstName}
                   </td>
                   <td>{student.gender}</td>
-                  <td>{student.birthdate}</td>
-                  <td>{student.yearLevel}</td>
+                  <td style={{ width: "150px" }}>{student.birthdate}</td>
+                  <td style={{ width: "100px" }}>{student.yearLevel}</td>
                   <td>{student.course}</td>
                   <td>{student.email}</td>
                   <td>{student.address}</td>
